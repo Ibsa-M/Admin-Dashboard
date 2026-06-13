@@ -1,0 +1,73 @@
+/* --- Core Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #e2e8f0; /* Light gray backdrop seen in your image */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Master Parent Grid --- */
+.dashboard-container {
+    display: grid;
+    height: 100vh;
+    /* Column 1: Sidebar width (approx 260px) | Column 2: Takes up all remaining space */
+    grid-template-columns: 260px 1fr;
+    /* Row 1: Header height (approx 160px) | Row 2: Takes up all remaining vertical space */
+    grid-template-rows: 160px 1fr;
+    
+    /* Mapping out our zones visually */
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar main";
+}
+
+/* --- Assigning Elements to Grid Areas --- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #1992d4; /* The primary blue from your uploaded design */
+    color: white;
+}
+
+.header {
+    grid-area: header;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Keeps shadow resting neatly above main content */
+}
+
+.main-content {
+    grid-area: main;
+    display: grid;
+    /* Splitting the content zone: Projects get bulk weight, Widgets column on right gets fixed room */
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    overflow-y: auto; /* Allows only the content area to scroll if dashboard fills up */
+}
+
+/* --- Internal Main Content Sub-Zones --- */
+.projects-section {
+    /* Temporary visual aid color */
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 2px dashed #94a3b8;
+}
+
+.widgets-section {
+    /* Temporary visual aid color */
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px dashed #94a3b8;
+}
+
+/* --- Temporary Debug Styling (Delete later) --- */
+.test-label {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+}
