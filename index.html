@@ -4,32 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="dashboard-container">
+    <div class="dashboard-grid">
         
+        <!-- ================= SIDEBAR ================= -->
         <aside class="sidebar">
-            <div class="test-label">Sidebar Area</div>
+            <!-- Branding Header -->
+            <div class="sidebar-brand">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,3V11H21V3H13M3,21H11V13H3V21M3,11H11V3H3V11M13,21H21V13H13V21Z" /></svg>
+                <span>Dashboard</span>
+            </div>
+
+            <!-- Primary Navigation Links -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg> Home</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M17,11H7V9H17V11M14,15H7V13H14V15Z" /></svg> Profile</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M20,16H5.17L4,16.17V4H20V16Z" /></svg> Messages</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5,8H12V13L16.25,15.54L17,14.33L13.5,12.25V8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z" /></svg> History</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M14,17H7V15H14V17M17,13H7V11H17V13M17,9H7V7H17V9Z" /></svg> Tasks</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A6.71 6.71 0 0 1 18 17V19H22V17S22 13.37 16.59 13M15 4.5A2.5 2.5 0 1 0 12.5 7A2.5 2.5 0 0 0 15 4.5Z" /></svg> Communities</a></li>
+                </ul>
+            </nav>
+
+            <!-- Utility/Settings Links -->
+            <nav class="sidebar-nav utilities">
+                <ul>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15M19.62,12.25C19.66,12 19.67,11.75 19.67,11.5C19.67,11.25 19.66,11 19.62,10.75L21.8,9.05C22,8.89 22.06,8.6 21.94,8.37L19.87,4.78C19.75,4.56 19.46,4.47 19.23,4.56L16.66,5.6C16.12,5.2 15.55,4.87 14.93,4.62L14.54,1.87C14.5,1.62 14.29,1.44 14.04,1.44H9.96C9.71,1.44 9.5,1.62 9.46,1.87L9.07,4.62C8.45,4.87 7.88,5.2 7.34,5.6L4.77,4.56C4.54,4.47 4.25,4.56 4.13,4.78L2.06,8.37C1.94,8.6 2,8.89 2.19,9.05L4.37,10.75C4.33,11 4.32,11.25 4.32,11.5C4.32,11.75 4.33,12 4.37,12.25L2.19,13.95C2,14.11 1.94,14.4 2.06,14.63L4.13,18.22C4.25,18.44 4.54,18.53 4.77,18.44L7.34,17.4C7.88,17.8 8.45,18.13 9.07,18.38L9.46,21.13C9.5,21.38 9.71,21.56 9.96,21.56H14.04C14.29,21.56 14.5,21.38 14.54,21.13L14.93,18.38C15.55,18.13 16.12,17.8 16.66,17.4L19.23,18.44C19.46,18.53 19.75,18.44 19.87,18.22L21.94,14.63C22.06,14.4 22,14.11 21.8,13.95L19.62,12.25Z" /></svg> Settings</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" /></svg> Support</a></li>
+                    <li><a href="#"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M11.8,10.9c-2.3,0-4.1,1.9-4.1,4.1s1.9,4.1,4.1,4.1c2.3,0,4.1-1.9,4.1-4.1S14.1,10.9,11.8,10.9z M11.8,17.3c-1.3,0-2.3-1-2.3-2.3s1-2.3,2.3-2.3s2.3,1,2.3,2.3S13.1,17.3,11.8,17.3z M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M12,20c-4.4,0-8-3.6-8-8s3.6-8,8-8s8,3.6,8,8S16.4,20,12,20z" /></svg> Privacy</a></li>
+                </ul>
+            </nav>
         </aside>
 
+        <!-- ================= HEADER ================= -->
         <header class="header">
-            <div class="test-label">Header Area</div>
+            <!-- Row 1: Search and Notifications -->
+            <div class="header-row-top">
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5A4.5,4.5 0 0,0 5,9.5A4.5,4.5 0 0,0 9.5,14A4.5,4.5 0 0,0 14,9.5A4.5,4.5 0 0,0 9.5,5Z" /></svg>
+                    <input type="text" id="search-input">
+                </div>
+                
+                <div class="user-summary-small">
+                    <svg class="notification-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10.5,4V4.68C7.63,5.36 6,7.92 6,11V16L4,18V19H20V18L18,16Z" /></svg>
+                    <!-- Small Circular Avatar Placeholder -->
+                    <div class="avatar-circle small-avatar">🐱</div>
+                    <span class="user-name-small">Ibsa Magarsa</span>
+                </div>
+            </div>
+
+            <!-- Row 2: Welcome Tag and Action Controls -->
+            <div class="header-row-bottom">
+                <div class="welcome-message">
+                    <div class="avatar-circle large-avatar">🐱</div>
+                    <div class="welcome-text">
+                        <span class="greeting">Hi there,</span>
+                        <h2 class="user-display-name">Ibsa Magarsa</h2>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn">New</button>
+                    <button class="action-btn">Upload</button>
+                    <button class="action-btn">Share</button>
+                </div>
+            </div>
         </header>
 
+        <!-- ================= MAIN CONTENT WINDOW ================= -->
         <main class="main-content">
             
-            <section class="projects-section">
-                <div class="test-label">Projects Section (Grid Cards)</div>
+            <!-- LEFT AREA: Projects Grid Cards -->
+            <section class="projects-block">
+                <h3 class="block-title">My Projects</h3>
+                <div class="cards-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="project-card">
+                        <h4 class="card-title">Calculator</h4>
+                        <p class="card-desc">A fully functional on-screen calculator with a clean UI, supporting basic arithmetic operations (add, subtract, multiply, divide), decimal points, clear functionality, and responsive button states. Built without JavaScript logic dependencies on eval() — uses manual parsing and error handling.</p>
+                        <div class="card-actions">
+                          <a href="https://ibsa-m.github.io/Calculator-/" target="_blank" title="View Live Preview">
+                              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg>
+                          </a>
+                          
+                          <a href="https://github.com/Ibsa-M/Calculator-" target="_blank" title="View Source Code">
+                              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z" /></svg>
+                          </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="project-card">
+                        <h4 class="card-title">Etch-a-Sketch</h4>
+                        <p class="card-desc">An interactive browser-based drawing grid that mimics the classic toy, allowing users to draw by hovering or clicking. Includes adjustable grid resolution (e.g., 16×16 up to 64×64), a clear/reset button, random RGB color mode, progressive darkening (trail effect), and an eraser tool.</p>
+                        <div class="card-actions">
+                          <a href="https://ibsa-m.github.io/Etch-a-Sketch-project/" target="_blank" title="View Live Preview">
+                              <svg viewBox="0 0 24 24"><path fill="currentColor"  d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg>
+                          </a>
+
+                          <a href="https://github.com/Ibsa-M/Etch-a-Sketch-project" target="_blank" title="View Source Code">
+                              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z" /></svg>
+                          </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="project-card">
+                        <h4 class="card-title">Landing-Page</h4>
+                        <p class="card-desc">A classic hand game against the computer, featuring a clean UI with clickable choices (rock, paper, scissors), real-time score tracking (player vs. computer), round result messages, and a best-of-5 or infinite play mode. Includes animated feedback, sound effects (optional), and a reset game button.</p>
+                        <div class="card-actions">
+                          <a href="https://ibsa-m.github.io/Odin_Project_Landing-Page/" target="_blank" title="View Live Preview">
+                            <button><svg viewBox="0 0 24 24"><path fill="currentColor"  d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg></button>
+
+                            <a href="https://github.com/Ibsa-M/Odin_Project_Landing-Page">
+                            <button><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z"/></svg></button>
+                            </a>
+
+                            
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="project-card">
+                        <h4 class="card-title">Rock Paper Scissors</h4>
+                        <p class="card-desc">Etiam cursus eros ac efficitur fringilla. Vestibulum dignissim urna eget accumsan aliquam. Curabitur dignissim nisi in tortor commodo, ac bibendum magna tincidunt.</p>
+                        <div class="card-actions">
+                          <a href=" https://ibsa-m.github.io/Rock-Paper-Scissors-Game/" target="_blank" title="View Live Preview">
+
+                            <button><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg></button>
+                          </a>
+                          <a href="https://github.com/Ibsa-M/Rock-Paper-Scissors-Game" target="_blank" title="View Source Code">
+                            <button><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z"/></svg></button>
+                          </a>
+
+                            
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
-            <aside class="widgets-section">
-                <div class="test-label">Announcements & Trending Panel</div>
-            </aside>
+            <!-- RIGHT AREA: Announcements & Trending Side Info -->
+            <section class="side-widgets">
+                
+                <!-- Announcements Widget Box -->
+                <section class="side-widgets">
+    
+                  <div class="widget-group">
+                      <h3 class="block-title">Education & Milestones</h3>
+                      <div class="widget-card-box items-list">
+                          <div class="item">
+                              <h5>The Odin Project</h5>
+                              <p>Full Stack JavaScript Curriculum (In Progress) — Foundations, Intermediate HTML/CSS, Git, and JavaScript systems.</p>
+                          </div>
+                          <div class="item">
+                              <h5>Software Engineering</h5>
+                              <p>Focusing on modern frontend architecture, semantic layout design, responsive workflows, and clean code principles.</p>
+                          </div>
+                          <div class="item">
+                              <h5>Web Design Certifications</h5>
+                              <p>Completed various deep-dives into CSS Grid, Flexbox layouts, and building interactive, accessible user experiences.</p>
+                          </div>
+                      </div>
+                  </div>
 
+                  <div class="widget-group">
+                      <h3 class="block-title">Technical Skills</h3>
+                      <div class="widget-card-box trending-users">
+                          
+                          <div class="user-row">
+                              <div class="avatar-circle user-orange">🌐</div>
+                              <div class="user-info">
+                                  <span class="handle">HTML5 & CSS3</span>
+                                  <span class="subtext">Grid, Flexbox, Semantic Markup</span>
+                              </div>
+                          </div>
+                          
+                          <div class="user-row">
+                              <div class="avatar-circle user-gold">⚡</div>
+                              <div class="user-info">
+                                  <span class="handle">JavaScript</span>
+                                  <span class="subtext">DOM Manipulation, ES6+, Logic</span>
+                              </div>
+                          </div>
+                          
+                          <div class="user-row">
+                              <div class="avatar-circle user-blue">🐙</div>
+                              <div class="user-info">
+                                  <span class="handle">Git & GitHub</span>
+                                  <span class="subtext">Version Control, Repo Workflows</span>
+                              </div>
+                          </div>
+                          
+                          <div class="user-row">
+                              <div class="avatar-circle user-green">🎨</div>
+                              <div class="user-info">
+                                  <span class="handle">Python</span>
+                                  <span class="subtext">Data Structures, Algorithms, Web Development</span>
+                              </div>
+                          </div>
+
+</section>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            
         </main>
-
     </div>
 
 </body>

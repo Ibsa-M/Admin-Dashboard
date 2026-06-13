@@ -1,4 +1,29 @@
-/* --- Core Reset --- */
+/* ==========================================================================
+   0. DESIGN TOKENS & SYSTEM VARIABLES
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --primary-blue: #1e40af;       /* Highly visible, professional theme color */
+    --primary-light: #eff6ff;      /* Active state highlights */
+    --bg-overall: #0f172a;       /* Deep Midnight Blue base canvas backdrop */
+    --bg-card: #1e293b;          /* Slightly elevated navy card surface blocks */
+    --border-color: #334155;     /* Dark accent divider lines */
+    --text-main: #f8fafc;        /* High visibility crisp white headers */
+    --text-muted: #94a3b8;       /* Calm silver gray for secondary descriptors */
+
+    
+    /* Layout Tokens */
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   1. GLOBAL SYSTEM RESETS & BASE STYLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -6,68 +31,442 @@
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #e2e8f0; /* Light gray backdrop seen in your image */
-    height: 100vh;
-    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-overall);
+    color: var(--text-main);
+    overflow: hidden; /* Prevents double scrollbars outside layout main grid */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- Master Parent Grid --- */
-.dashboard-container {
+/* Base interactive defaults */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   2. GRID CORE CONTAINER LAYOUT
+   ========================================================================== */
+.dashboard-grid {
     display: grid;
     height: 100vh;
-    /* Column 1: Sidebar width (approx 260px) | Column 2: Takes up all remaining space */
-    grid-template-columns: 260px 1fr;
-    /* Row 1: Header height (approx 160px) | Row 2: Takes up all remaining vertical space */
-    grid-template-rows: 160px 1fr;
-    
-    /* Mapping out our zones visually */
+    width: 100vw;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 140px 1fr;
     grid-template-areas: 
         "sidebar header"
         "sidebar main";
 }
 
-/* --- Assigning Elements to Grid Areas --- */
+/* ==========================================================================
+   3. SIDEBAR NAVIGATION COMPONENT
+   ========================================================================== */
 .sidebar {
     grid-area: sidebar;
-    background-color: #1992d4; /* The primary blue from your uploaded design */
-    color: white;
+    background-color: var(--primary-blueblack);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 2.5rem;
+    z-index: 20;
+    box-shadow: 4px 0 24px rgba(46, 59, 90, 0.08);
 }
 
+/* Branding */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    padding-left: 0.5rem;
+}
+
+.sidebar-brand svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Navigation System */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.75);
+    transition: var(--transition-smooth);
+}
+
+/* Interactive States */
+.sidebar-nav li a:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav li.active a {
+    color: var(--primary-blue);
+    background-color: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Push utility block downwards dynamically */
+.sidebar-nav.utilities {
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   4. APP HEADER & USER PROFILE MODULE
+   ========================================================================== */
 .header {
     grid-area: header;
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Keeps shadow resting neatly above main content */
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
 }
 
+/* Row 1: Search & Small Summary */
+.header-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-overall);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    width: 60%;
+    max-width: 500px;
+    border: 1px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.search-bar:focus-within {
+    /* background-color: #ffffff; */
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.user-summary-small {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-icon {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.notification-icon:hover {
+    color: var(--primary-blue);
+    transform: scale(1.05);
+}
+
+.user-name-small {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* Row 2: Welcome banner & CTA Actions */
+.header-row-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-message {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.welcome-text .greeting {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.welcome-text .user-display-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.action-btn {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    padding: 0.55rem 1.4rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.action-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   5. MAIN WORKSPACE SCROLL WINDOW
+   ========================================================================== */
 .main-content {
     grid-area: main;
     display: grid;
-    /* Splitting the content zone: Projects get bulk weight, Widgets column on right gets fixed room */
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3.2fr 1.2fr;
     gap: 2rem;
-    padding: 2rem;
-    overflow-y: auto; /* Allows only the content area to scroll if dashboard fills up */
+    padding: 2rem 3rem;
+    overflow-y: auto;
 }
 
-/* --- Internal Main Content Sub-Zones --- */
-.projects-section {
-    /* Temporary visual aid color */
-    background-color: rgba(255, 255, 255, 0.5); 
-    border: 2px dashed #94a3b8;
-}
-
-.widgets-section {
-    /* Temporary visual aid color */
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 2px dashed #94a3b8;
-}
-
-/* --- Temporary Debug Styling (Delete later) --- */
-.test-label {
-    padding: 20px;
-    font-weight: bold;
+/* Universal Section Headings */
+.block-title {
     font-size: 1.2rem;
-    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.2px;
 }
+
+/* ==========================================================================
+   6. LEFT WORKSPACE: CUSTOM CARDS
+   ========================================================================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 1.8rem;
+    box-shadow: var(--shadow-md);
+    border-left: 8px solid #f97316; /* Structural left-border highlight accent */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+/* Alternate Left Accent Colors for Card Variation Visual Interest */
+.cards-grid .project-card:nth-child(2) { border-left-color: #eab308; }
+.cards-grid .project-card:nth-child(3) { border-left-color: #3b82f6; }
+.cards-grid .project-card:nth-child(4) { border-left-color: #22c55e; }
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.card-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Clean UI cutoff text rule */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card Actions: Standard Anchor Links and Nested Formatted Buttons */
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: auto;
+}
+
+.card-actions a,
+.card-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.card-actions a:hover,
+.card-actions button:hover {
+    color: var(--primary-blue);
+    transform: scale(1.15);
+}
+
+/* ==========================================================================
+   7. RIGHT WORKSPACE: WIDGET CONTAINER & PRESETS
+   ========================================================================== */
+.side-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.widget-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-card-box {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Education Timeline Items style */
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.items-list .item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.items-list .item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.items-list .item h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.items-list .item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Technical Skills Row Layout style */
+.trending-users {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.user-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.user-info .handle {
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.user-info .subtext {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   8. VISUAL AVATAR COMPONENTS & CHIP HELPER VARIABLES
+   ========================================================================== */
+.avatar-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f8fafc;
+    border: 2px solid var(--border-color);
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.small-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+}
+
+.large-avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+    background-color: #fef2f2;
+    border-color: #fee2e2;
+}
+
+/* Skills Context Circle Colors */
+.user-orange { background-color: #ffedd5; border-color: #fed7aa; }
+.user-gold   { background-color: #fef9c3; border-color: #fef08a; }
+.user-blue   { background-color: #dbeafe; border-color: #bfdbfe; }
+.user-green  { background-color: #dcfce7; border-color: #bbf7d0; }
